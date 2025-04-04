@@ -85,22 +85,37 @@ class CharList extends Component {
     
     myRef = React.createRef();
     
-    setRef = () => {
+    refItems = [];
 
+    setRef = (ref) => {
+        this.refItems.push(ref);
     }
 
-    focusOnItem = () => {
-
+    focusOnItem = (i) => {
+        this.refItems.forEach((item) => item.classList.remove('char__item_selected'));
+        this.refItems[i].classList.add('char__item_selected');
+        this.refItems[i].focus();
     }
 
     renderItems = (arr) => {
-        const items = arr.map(item => {
+        const items = arr.map((item, i) => {
             return (
                 <li 
                     className="char__item"
+                    tabIndex={0}
+                    ref={this.setRef}
                     key={item.id}
-                    ref={this.myRef}
-                    onClick={() => this.props.onCharSelected(item.id)}>
+                    onClick={() => {
+                        this.props.onCharSelected(item.id);
+                        this.focusOnItem(i);
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === ' ' || e.key === 'Enter') {
+                            e.preventDefault();
+                            this.props.onCharSelected(item.id);
+                            this.focusOnItem(i); 
+                        }
+                    }}>
                         <img src={item.thumbnail} alt={item.name}/>
                         <div className="char__name">{item.name}</div>
                 </li>
