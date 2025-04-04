@@ -105,7 +105,7 @@ const View = ({char}) => {
             <ul className="char__comics-list">
                 {comics.length > 0 ? null : 'There are no comics with this character'}
                 {
-                    comics.slice(0, 1).map((item, i) => {
+                    comics.map((item, i) => {
                         return (
                             <li 
                             key={i}
