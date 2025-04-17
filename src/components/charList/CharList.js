@@ -1,7 +1,7 @@
 import React ,{ useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
 
@@ -10,16 +10,13 @@ import './charList.scss';
 const CharList = (props) => {
 
     const [charList, setCharList] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
     const [newItemLoading, setNewItemLoading] = useState(false);
-    const [offset, setOffset] = useState(0);
     const [charEnded, setCharEnded] = useState(false);
 
-    const marvelService = new MarvelService();
+    const {loading, error, getAllCharacters} = useMarvelService();
     
     useEffect(() => {
-        onRequest();
+        onRequest(offsetRef.current, true);
         window.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -27,38 +24,28 @@ const CharList = (props) => {
         };
     }, [])
     
-    const onRequest = () => {
-        onCharListLoading();
-        marvelService.getAllCharacters(offsetRef.current)
-        .then(onCharListLoaded)
-        .catch(onError)
-    }
-    
-    const onCharListLoading = () => {
-        setNewItemLoading(true);
+    const onRequest = (offset, initial) => {
+        if (charEnded) return;
+        if (!initial) setNewItemLoading(true);
+        getAllCharacters(offset).then(onCharListLoaded);
     }
 
     const onCharListLoaded = (newCharList) => {
-        let ended = false;
-        if (newCharList.length < 9) {
-            ended = true;
-        }
-    
         setCharList(prevCharList => {
             const existingIds = new Set(prevCharList.map(char => char.id));
             const filteredNewList = newCharList.filter(char => !existingIds.has(char.id));
-            return [...prevCharList, ...filteredNewList];
-        });
-    
-        setLoading(false);
-        setNewItemLoading(false);
-        offsetRef.current += 9;
-        setCharEnded(ended);
-    }
+  
+            const updatedList = [...prevCharList, ...filteredNewList];
+            offsetRef.current = updatedList.length;
 
-    const onError = () => {
-        setError(true);
-        setLoading(loading => false);
+            if (newCharList.length < 9) {
+                setCharEnded(true);
+            }
+
+            return updatedList;
+        });
+
+        setNewItemLoading(false);
     }
     
     const itemRefs = useRef([]);
@@ -72,8 +59,11 @@ const CharList = (props) => {
     const offsetRef = useRef(0);
 
     const handleScroll = () => {
-        if (document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
-            onRequest();
+        if (newItemLoading || charEnded) return;
+
+        const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+        if (nearBottom) {
+            onRequest(offsetRef.current, false);
         }
     }
 
@@ -112,18 +102,19 @@ const CharList = (props) => {
     const items = renderItems(charList);
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading ? <Spinner/> : null;
-    const content = !( loading || error) ? items : null;
 
     return (
         <div className="char__list">
             {errorMessage}
             {spinner}
-            {content}
+            {items}
             <button 
                 className="button button__main button__long"
                 disabled={newItemLoading}
                 style={{'display' : charEnded ? 'none' : 'block'}}
-                onClick={() => onRequest(offset)}>
+                onClick={() => {
+                    onRequest(offsetRef.current, false);
+                }}>
                 <div className="inner">load more</div>
             </button>
         </div>
