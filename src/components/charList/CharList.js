@@ -10,8 +10,9 @@ import './charList.scss';
 const CharList = (props) => {
 
     const [charList, setCharList] = useState([]);
-    const [newItemLoading, setNewItemLoading] = useState(false); // Зачем вообще newItemLoading. Этот флаг нужен для: Отключения кнопки “load more” во время дозагрузки:
+    const newItemLoading = useRef(false);
     const [charEnded, setCharEnded] = useState(false);
+    const charEndedRef = useRef(false);
 
     const {loading, error, getAllCharacters} = useMarvelService();
     
@@ -26,12 +27,15 @@ const CharList = (props) => {
     }, [])
     
     const onRequest = (offset, initial) => {
-        if (charEnded || newItemLoading) return;
-        
-        if (!initial) setNewItemLoading(true);
-        
+        if (charEnded || newItemLoading.current) return;
+
+        if (!initial) newItemLoading.current = true;
+
         getAllCharacters(offset)
-            .then(onCharListLoaded);
+            .then(onCharListLoaded)
+            .finally(() => {
+                newItemLoading.current = false;
+            });
     }
 
     const onCharListLoaded = (newCharList) => {
@@ -44,12 +48,11 @@ const CharList = (props) => {
 
             if (newCharList.length < 6) {
                 setCharEnded(true);
+                charEndedRef.current = true;
             }
 
             return updatedList;
         });
-
-        setNewItemLoading(false);
     }
     
     const itemRefs = useRef([]);
@@ -63,7 +66,7 @@ const CharList = (props) => {
     const offsetRef = useRef(0);
 
     const handleScroll = () => {
-        if (newItemLoading || charEnded) return;
+        if (newItemLoading.current || charEndedRef.current) return;
 
         const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
         if (nearBottom) {
@@ -105,7 +108,7 @@ const CharList = (props) => {
 
     const items = renderItems(charList);
     const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading && !newItemLoading ? <Spinner/> : null;
+    const spinner = loading && !newItemLoading.current ? <Spinner/> : null;
 
     return (
         <div className="char__list">
@@ -114,7 +117,7 @@ const CharList = (props) => {
             {items}
             <button 
                 className="button button__main button__long"
-                disabled={newItemLoading}
+                disabled={newItemLoading.current}
                 style={{'display' : charEnded ? 'none' : 'block'}}
                 onClick={() => {
                     onRequest(offsetRef.current, false);
