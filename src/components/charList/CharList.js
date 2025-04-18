@@ -10,13 +10,14 @@ import './charList.scss';
 const CharList = (props) => {
 
     const [charList, setCharList] = useState([]);
-    const [newItemLoading, setNewItemLoading] = useState(false);
+    const [newItemLoading, setNewItemLoading] = useState(false); // Зачем вообще newItemLoading. Этот флаг нужен для: Отключения кнопки “load more” во время дозагрузки:
     const [charEnded, setCharEnded] = useState(false);
 
     const {loading, error, getAllCharacters} = useMarvelService();
     
     useEffect(() => {
         onRequest(offsetRef.current, true);
+
         window.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -25,9 +26,12 @@ const CharList = (props) => {
     }, [])
     
     const onRequest = (offset, initial) => {
-        if (charEnded) return;
+        if (charEnded || newItemLoading) return;
+        
         if (!initial) setNewItemLoading(true);
-        getAllCharacters(offset).then(onCharListLoaded);
+        
+        getAllCharacters(offset)
+            .then(onCharListLoaded);
     }
 
     const onCharListLoaded = (newCharList) => {
@@ -38,7 +42,7 @@ const CharList = (props) => {
             const updatedList = [...prevCharList, ...filteredNewList];
             offsetRef.current = updatedList.length;
 
-            if (newCharList.length < 9) {
+            if (newCharList.length < 6) {
                 setCharEnded(true);
             }
 
@@ -61,7 +65,7 @@ const CharList = (props) => {
     const handleScroll = () => {
         if (newItemLoading || charEnded) return;
 
-        const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+        const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
         if (nearBottom) {
             onRequest(offsetRef.current, false);
         }
@@ -101,7 +105,7 @@ const CharList = (props) => {
 
     const items = renderItems(charList);
     const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading ? <Spinner/> : null;
+    const spinner = loading && !newItemLoading ? <Spinner/> : null;
 
     return (
         <div className="char__list">
