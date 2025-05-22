@@ -1,19 +1,19 @@
-import {useHttp} from '../hooks/http.hook';
+import { useHttp } from '../hooks/http.hook';
 
 
 const useMarvelService = () => {
-    const {loading, request, error, clearError} = useHttp();
+    const { loading, request, error, clearError } = useHttp();
 
     const _apiBase = 'https://marvel-server-zeta.vercel.app/';
     const _apiKey = 'apikey=d4eecb0c66dedbfae4eab45d312fc1df';
-    const _baseOffset = 0; 
+    const _baseOffset = 0;
 
     let apiRequestCount = 0;
 
     const getAllCharacters = async (offset = _baseOffset) => {
         apiRequestCount++;
         console.log(`🔁 API Request #${apiRequestCount}: getAllCharacters (offset: ${offset})`);
-    
+
         const res = await request(`${_apiBase}characters?limit=6&offset=${offset}&${_apiKey}`);
         return res.data.results.map(_transformCharacter);
     }
@@ -21,7 +21,7 @@ const useMarvelService = () => {
     const getAllComics = async (offset = _baseOffset) => {
         apiRequestCount++;
         console.log(`🔁 API Request #${apiRequestCount}: getAllCharacters (offset: ${offset})`);
-    
+
         const res = await request(`${_apiBase}comics?limit=6&offset=${offset}&${_apiKey}`);
         return res.data.results.map(_transformComics);
     }
@@ -32,6 +32,14 @@ const useMarvelService = () => {
 
         const res = await request(`${_apiBase}characters/${id}?${_apiKey}`);
         return _transformCharacter(res.data.results[0]);
+    }
+
+    const getAComic = async (id) => {
+        apiRequestCount++;
+        console.log(`🔁 API Request #${apiRequestCount}: getCharacter (id: ${id})`);
+
+        const res = await request(`${_apiBase}comics/${id}?${_apiKey}`);
+        return _transformComics(res.data.results[0]);
     }
 
     const _transformCharacter = (char) => {
@@ -52,11 +60,14 @@ const useMarvelService = () => {
             title: comics.title,
             description: comics.description,
             thumbnail: comics.thumbnail.path + '.' + comics.thumbnail.extension,
+            price: comics.prices[0].price,
+            pages: comics.pageCount,
+            languages: comics.textObjects.languages
 
         }
     }
 
-    return {loading, error, clearError, getAllCharacters, getCharacter, getAllComics};
+    return { loading, error, clearError, getAllCharacters, getCharacter, getAllComics, getAComic };
 }
 
 
