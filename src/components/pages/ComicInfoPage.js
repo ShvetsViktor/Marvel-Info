@@ -10,7 +10,7 @@ const ComicInfoPage = (props) => {
         <>
             <AppBanner />
             <ErrorBoundary>
-                <ComicInfo comicId={props} />
+                <ComicInfo comicId={1} />
             </ErrorBoundary>
         </>
     )

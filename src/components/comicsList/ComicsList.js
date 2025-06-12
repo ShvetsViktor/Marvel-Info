@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+
 import useMarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
@@ -89,7 +91,8 @@ const ComicsList = (props) => {
                             focusOnItem(i);
                         }
                     }}>
-                    <img src={item.thumbnail} alt={item.title} />
+
+                    <NavLink exact to="/comics/comic"><img src={item.thumbnail} alt={item.title} /></NavLink>
                     <div className="comics__name">{item.title}</div>
                     <div className="comics__price">{item.price}$</div>
                 </li>

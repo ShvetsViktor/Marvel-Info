@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import useMarvelService from '../../services/MarvelService';
 import ErrorMessage from '../errorMessage/ErrorMessage';
@@ -62,7 +63,7 @@ const View = ({ comic }) => {
                 <p className="single-comic__descr">Language: {languages}</p>
                 <div className="single-comic__price">{price}$</div>
             </div>
-            <a href="#" className="single-comic__back">Back to all</a>
+            <NavLink exact to="/comics"><a href="#" className="single-comic__back">Back to all</a></NavLink>
         </>
     )
 }
