@@ -36,6 +36,8 @@
     &__item {
         width: 100%;
         transition: 0.3s transform;
+        padding: 15px;
+        cursor: pointer;
 
         & img {
             display: block;
@@ -43,7 +45,9 @@
             height: 346px;
             box-shadow: 5px 5px 10px #00000040;
         }
+
+        &:hover {
+            transform: translateY(-8px);
+        }
     }
-
-
 }
