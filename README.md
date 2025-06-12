@@ -1,11 +1,11 @@
 
-# Marvel Portfolio Project
+# Marvel SPA Project
 
 ## In order to access the site please follow the link down below
 
 [https://marvel-nqe28l0xd-viktors-projects-99d886bb.vercel.app/comics](https://marvel-nqe28l0xd-viktors-projects-99d886bb.vercel.app/comics)
 
-This is a portfolio-style web application built with React. It displays a collection of Marvel-themed comics, with routing and dynamic pages implemented using React Router v5. Styles are written in SCSS using Sass.
+This is a Marvel Demo web application built with React. It displays a collection of Marvel-themed comics, with routing and dynamic pages implemented using React Router v5. Styles are written in SCSS using Sass.
 
 ## 🚀 Features
 
@@ -25,5 +25,5 @@ This is a portfolio-style web application built with React. It displays a collec
 
 ## 🛠 Installation
 
-$ npm install
-$ npm start
+npm install
+npm start
