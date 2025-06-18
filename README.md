@@ -1,5 +1,5 @@
 
-# Marvel SPA Project
+# ComicCore SPA Project
 
 ## To access the site, please follow the link below.  
 
