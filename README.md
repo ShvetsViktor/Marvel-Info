@@ -2,13 +2,13 @@
 # Marvel SPA Project
 
 ## To access the site, please follow the link below.  
-*Note: This project is currently in development and not yet finished. Only the desktop version is available at the moment.*
 
 [https://marvel-orpin.vercel.app/](https://marvel-orpin.vercel.app/)
 
 This is a demo Marvel web application built with React.
 It displays a collection of Marvel-themed comics and characters, with routing and dynamic pages implemented using React Router v5.
 Styles are written in SCSS using Sass.
+Added responsive design for the best user experience on different devices.
 
 ## 🚀 Features
 
