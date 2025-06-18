@@ -35,6 +35,11 @@ a {
         text-decoration: none;
         color: inherit;
     }
+
+    &:focus {
+        outline: 2px solid #9F0013;
+        outline-offset: 2px;
+    }
 }
 
 p {
@@ -48,19 +53,6 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.app {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 50px 0 50px 0;
-    position: relative;
-
-    .bg-decoration {
-        position: absolute;
-        right: -174px;
-        bottom: -70px;
-        z-index: -1;
-    }
-}
 
 main {
     margin-top: 50px;
@@ -85,6 +77,28 @@ main {
     }
 }
 
+.app {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 0 50px 0;
+    position: relative;
+
+    .bg-decoration {
+        position: absolute;
+        right: -174px;
+        bottom: -70px;
+        z-index: -1;
+    }
+
+    .comics__grid {
+        justify-content: space-between;
+    }
+
+    .comics__item {
+        justify-self: center;
+    }
+}
+
 @media screen and (max-width: 1500px) {
     .app {
 
@@ -101,7 +115,7 @@ main {
         .char {
             &__content {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 50px;
             }
 
             &__grid {
@@ -115,6 +129,12 @@ main {
 
             &__info {
                 order: 1;
+            }
+
+            &__btns {
+                a:nth-child(1) {
+                    margin-right: 10px;
+                }
             }
         }
 
@@ -132,17 +152,25 @@ main {
         .bg-decoration {
             display: none;
         }
+
+        .comics__grid {
+            grid-template-columns: repeat(3, auto);
+            gap: 0;
+            row-gap: 15px;
+        }
+
+        .comics__list {
+            margin-top: 0;
+        }
+
+        .comics__item {
+            padding: 0;
+        }
     }
 }
 
 
 @media screen and (max-width: 768px) {
-    .app .char__grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
-        justify-content: space-around;
-        column-gap: 10px;
-    }
-
     .app {
         padding: 10px 0 10px 0;
 
@@ -167,6 +195,65 @@ main {
                 font-size: 20px;
             }
         }
+
+        .comics__grid {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+        }
+
+        .comics__item {
+            max-height: 700px;
+            width: auto;
+
+
+            a img {
+                object-fit: cover;
+            }
+        }
+    }
+
+    .app__banner {
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-between;
+        height: 100%;
+        padding: 10px 10px;
+
+        &-text {
+            order: 3;
+            font-size: 24px;
+            grid-column: 1 / -1;
+            grid-row: 2;
+            width: 100%;
+            justify-self: stretch;
+            padding: 0 0;
+
+            span {
+                position: absolute; // margin-left: 30px;
+                right: 0;
+            }
+        }
+
+        img {
+            max-width: 133px;
+            object-fit: cover;
+        }
+
+        img:nth-last-child(1) {
+            justify-self: right;
+            ;
+        }
+    }
+
+    .app__banner-text br {
+        display: none;
+    }
+
+    .app .char__grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+        justify-content: space-around;
+        column-gap: 10px;
     }
 
     .char__item {
@@ -209,5 +296,37 @@ main {
                 grid-template-columns: 1fr;
             }
         }
+
+        .comics__grid {
+            grid-template-columns: 1fr;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+        }
+
+        .comics__list {
+            margin-top: 0;
+        }
+
+        .comics__item {
+            padding: 0 10px;
+            justify-self: center;
+        }
+    }
+
+    .app__banner-text br {
+        display: block;
+    }
+
+    .app__banner-text span {
+        position: relative;
+    }
+
+    .app__banner img {
+        max-width: 100px;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
     }
 }

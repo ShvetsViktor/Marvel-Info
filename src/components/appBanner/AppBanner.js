@@ -5,12 +5,12 @@ import avengersLogo from '../../resources/img/Avengers_logo.png';
 const AppBanner = () => {
     return (
         <div className="app__banner">
-            <img src={avengers} alt="Avengers"/>
+            <img src={avengers} alt="Avengers" />
             <div className="app__banner-text">
-                New comics every week!<br/>
-                Stay tuned!
+                New comics every week!<br />
+                <span>Stay tuned!</span>
             </div>
-            <img src={avengersLogo} alt="Avengers logo"/>
+            <img src={avengersLogo} alt="Avengers logo" />
         </div>
     )
 }
