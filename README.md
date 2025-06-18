@@ -3,7 +3,7 @@
 
 ## To access the site, please follow the link below.  
 
-[https://marvel-orpin.vercel.app/](https://marvel-orpin.vercel.app/)
+[https://comiccore.vercel.app/](https://comiccore.vercel.app/)
 
 This is a demo Marvel web application built with React.
 It displays a collection of Marvel-themed comics and characters, with routing and dynamic pages implemented using React Router v5.
