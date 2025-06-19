@@ -30,3 +30,7 @@ Added responsive design for the best user experience on different devices.
 
 npm install
 npm start
+
+## Link to Figma design
+
+[https://www.figma.com/design/xiC1B6ZlHvbiUK6FO3caxN/Marvel-DB?node-id=0-1&p=f&t=g9eUKTJVlvEXHaCU-0](https://www.figma.com/design/xiC1B6ZlHvbiUK6FO3caxN/Marvel-DB?node-id=0-1&p=f&t=g9eUKTJVlvEXHaCU-0)
