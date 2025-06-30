@@ -1,7 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 
 import './appHeader.scss';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 const AppHeader = () => {
     return (
