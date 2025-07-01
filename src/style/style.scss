@@ -290,10 +290,85 @@ main {
 
 @media screen and (max-width: 480px) {
     .app {
+
+        padding: 0 0;
+
+        .app__header {
+            padding-top: 10px;
+            background-color: #eeeded;
+        }
+
+        main {
+            margin-top: 0px;
+        }
+
         .randomchar {
             &__block {
-                padding: 10px 10px 50px 10px;
-                grid-template-columns: 1fr;
+                padding: 10px;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+
+            &__btns {
+                min-width: 40px;
+                flex-wrap: nowrap;
+            }
+
+            &__btns .button {
+                font-size: 12px;
+            }
+
+            &__btns .button .inner {
+                padding: 0 0px;
+
+            }
+
+            &__btns a:nth-child(1) {
+                min-width: 30px;
+                width: 100px;
+                margin-right: 0;
+            }
+
+            &__btns a:last-child {
+                min-width: 30px;
+                width: 100px;
+            }
+
+            &__static {
+                padding: 0 20px;
+
+            }
+
+            &__static button {
+                margin: 5px 15px;
+            }
+
+
+
+            &__title {
+                font-size: 16px;
+                line-height: 20px;
+                font-weight: bold;
+                letter-spacing: -0.045em;
+            }
+
+            &__title:nth-child(1) {
+                display: none;
+            }
+
+            &__title:nth-child(2) {
+                display: inline-block;
+                visibility: hidden;
+                position: relative;
+                margin-top: 5px;
+            }
+
+            &__title:nth-child(2)::after {
+                content: "Try another character";
+                visibility: visible;
+                position: absolute;
+                left: 0;
+                top: 0;
             }
         }
 
