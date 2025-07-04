@@ -85,7 +85,7 @@ const ComicsList = (props) => {
                         <img src={item.thumbnail} alt={item.title} />
                     </NavLink>
                     <div className="comics__name">{item.title}</div>
-                    <div className="comics__price">{item.price}$</div>
+                    <div className="comics__price">{item.price}</div>
                 </li>
             )
         });

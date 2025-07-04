@@ -39,6 +39,9 @@ const useMarvelService = () => {
         console.log(`🔁 API Request #${apiRequestCount}: getAComic (id: ${id})`);
 
         const res = await request(`${_apiBase}comics/${id}?${_apiKey}`);
+        if (!res || !res.data || !res.data.results || res.data.results.length === 0) {
+            throw new Error('Comic not found');
+        }
         return _transformComics(res.data.results[0]);
     }
 
@@ -58,11 +61,11 @@ const useMarvelService = () => {
         return {
             id: comics.id,
             title: comics.title,
-            description: comics.description,
+            description: comics.description || "There is no decription",
             thumbnail: comics.thumbnail.path + '.' + comics.thumbnail.extension,
-            price: comics.prices[0].price,
-            pages: comics.pageCount,
-            languages: comics.textObjects.languages
+            price: comics.prices[0].price ? `${comics.prices[0].price}$` : 'Not available',
+            pages: comics.pageCount ? `${comics.pageCount} p.` : 'No information about the number of pages',
+            languages: comics.textObjects.languages || 'en-us'
 
         }
     }
