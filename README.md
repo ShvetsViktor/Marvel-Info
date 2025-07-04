@@ -3,7 +3,7 @@
 
 ## To access the site, please follow the link below.  
 
-[https://comiccore.vercel.app/](https://comiccore.vercel.app/)
+[https://marvel-inf0.vercel.app/](https://marvel-inf0.vercel.app/)
 
 This is a demo Marvel web application built with React.
 It displays a collection of Marvel-themed comics and characters, with routing and dynamic pages implemented using React Router v6.
@@ -22,7 +22,8 @@ Added responsive design for the best user experience on different devices.
 
 - [React](https://reactjs.org/) 18  
 - [React Router DOM v6.1](https://reactrouter.com/)  
-- [Sass](https://sass-lang.com/)  
+- [Sass](https://sass-lang.com/)
+- Global SCSS with BEM-oriented architecture — modular SCSS structure using BEM naming for class uniqueness  
 - [Vite](https://vitejs.dev/) — fast and modern build tool for front-end development
 
 ## 🛠 Installation
