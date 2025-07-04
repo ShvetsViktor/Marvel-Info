@@ -1,0 +1,99 @@
+@use '@/style/variables.scss' as *;
+
+.single-comic {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 293px 550px auto;
+    column-gap: 50px;
+    align-items: start;
+
+    &__img {
+        width: 293px;
+        height: 450px;
+    }
+
+    &__name {
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 29px;
+    }
+
+    &__descr {
+        font-size: 18px;
+        line-height: 24px;
+        margin-top: 25px;
+    }
+
+    &__price {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        color: $main-color;
+        margin-top: 25px;
+    }
+
+    &__back {
+        justify-self: end;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 24px;
+
+        &:hover {
+            color: $main-color;
+        }
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .app {
+
+        &__header {
+            padding-top: 10px;
+        }
+
+    }
+
+    .single-comic {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+
+        &__img {
+            padding-left: 40px;
+            height: auto;
+            max-width: 100%;
+            display: block;
+        }
+
+        &__info {
+            padding: 10px 10px;
+        }
+
+        a {
+            padding-right: 10px;
+            grid-column-start: 2;
+            grid-column-end: 3;
+        }
+    }
+
+}
+
+@media screen and (max-width: 420px) {
+    .single-comic {
+        margin-top: 20px;
+        grid-template-columns: 1fr !important;
+        justify-items: center;
+
+        &__img {
+            padding: 0 10px;
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        a {
+            grid-column-start: auto;
+            grid-column-end: auto;
+        }
+    }
+}

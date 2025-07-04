@@ -79,20 +79,11 @@ const ComicsList = (props) => {
                     className="comics__item"
                     tabIndex={0}
                     ref={el => itemRefs.current[i] = el}
-                    key={item.id}
-                    onClick={() => {
-                        props.onComicsSelected(item.id);
-                        focusOnItem(i);
-                    }}
-                    onKeyDown={(e) => {
-                        if (e.key === ' ' || e.key === 'Enter') {
-                            e.preventDefault();
-                            props.onComicsSelected(item.id);
-                            focusOnItem(i);
-                        }
-                    }}>
+                    key={item.id}>
 
-                    <NavLink exact to="/comics/comic"><img src={item.thumbnail} alt={item.title} /></NavLink>
+                    <NavLink to={`/comics/${item.id}`}>
+                        <img src={item.thumbnail} alt={item.title} />
+                    </NavLink>
                     <div className="comics__name">{item.title}</div>
                     <div className="comics__price">{item.price}$</div>
                 </li>

@@ -1,6 +1,12 @@
-@import './variables';
+@use '@/sass/libs/modern-normalize.min.css';
+@use "@/sass/libs/grids-min.css";
+@use "@/sass/libs/grids-responsive-min.css";
+@use "@/sass/libs/fontello.css";
+
+@use '@/style/variables.scss' as *;
+@use '@/style/button.scss';
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
-@import './button';
 
 * {
     font-family: "Roboto Condensed", sans-serif;
@@ -89,14 +95,6 @@ main {
         bottom: -70px;
         z-index: -1;
     }
-
-    .comics__grid {
-        justify-content: space-around;
-    }
-
-    .comics__item {
-        justify-self: center;
-    }
 }
 
 @media screen and (max-width: 1500px) {
@@ -110,61 +108,10 @@ main {
 
 @media screen and (max-width: 1200px) {
     .app {
-        padding: 50px 10px;
-
-        .char {
-            &__content {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            &__grid {
-                grid-template-columns: repeat(3, 1fr);
-                justify-items: center;
-            }
-
-            &__list {
-                order: 2;
-            }
-
-            &__info {
-                order: 1;
-            }
-
-            &__btns {
-                a:nth-child(1) {
-                    margin-right: 10px;
-                }
-            }
-        }
-
-        .randomchar {
-            &__decoration {
-                right: 0;
-
-            }
-
-            &__block {
-                padding: 20px 10px;
-            }
-        }
+        padding: 0px 0px;
 
         .bg-decoration {
             display: none;
-        }
-
-        .comics__grid {
-            grid-template-columns: repeat(3, auto);
-            gap: 0;
-            row-gap: 15px;
-        }
-
-        .comics__list {
-            margin-top: 0;
-        }
-
-        .comics__item {
-            padding: 0;
         }
     }
 }
@@ -172,11 +119,7 @@ main {
 
 @media screen and (max-width: 768px) {
     .app {
-        padding: 10px 0 10px 0;
-
-        .randomchar__decoration {
-            display: none;
-        }
+        padding: 0px 0 0px 0;
 
         &__header {
             gap: 20px;
@@ -195,213 +138,5 @@ main {
                 font-size: 20px;
             }
         }
-
-        .comics__grid {
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            justify-content: center;
-            column-gap: 10px;
-        }
-
-        .comics__item {
-            max-height: 700px;
-            width: auto;
-
-
-            a img {
-                object-fit: cover;
-            }
-        }
-    }
-
-    .app__banner {
-        grid-template-columns: 1fr 1fr;
-        justify-content: space-between;
-        height: 100%;
-        padding: 10px 10px;
-
-        &-text {
-            order: 3;
-            font-size: 24px;
-            grid-column: 1 / -1;
-            grid-row: 2;
-            width: 100%;
-            justify-self: stretch;
-            padding: 0 0;
-
-            span {
-                position: absolute; // margin-left: 30px;
-                right: 0;
-            }
-        }
-
-        img {
-            max-width: 133px;
-            object-fit: cover;
-        }
-
-        img:nth-last-child(1) {
-            justify-self: right;
-            ;
-        }
-    }
-
-    .app__banner-text br {
-        display: none;
-    }
-
-    .app .char__grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
-        justify-content: space-around;
-        column-gap: 10px;
-    }
-
-    .char__item {
-        width: 95vw;
-        max-width: 300px;
-        height: 400px;
-        padding: 20px;
-    }
-
-    .char__item img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-        transform: none;
-    }
-
-    .char__name {
-        font-size: 28px;
-        line-height: 36px;
-    }
-
-    .randomchar {
-        &__block {
-            padding: 10px 5px;
-        }
-
-        &__btns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .app {
-
-        padding: 0 0;
-
-        .app__header {
-            padding-top: 10px;
-            background-color: #eeeded;
-        }
-
-        main {
-            margin-top: 0px;
-        }
-
-        .randomchar {
-            &__block {
-                padding: 10px;
-                grid-template-columns: 1fr 1fr;
-                gap: 5px;
-            }
-
-            &__btns {
-                min-width: 40px;
-                flex-wrap: nowrap;
-            }
-
-            &__btns .button {
-                font-size: 12px;
-            }
-
-            &__btns .button .inner {
-                padding: 0 0px;
-
-            }
-
-            &__btns a:nth-child(1) {
-                min-width: 30px;
-                width: 100px;
-                margin-right: 0;
-            }
-
-            &__btns a:last-child {
-                min-width: 30px;
-                width: 100px;
-            }
-
-            &__static {
-                padding: 0 20px;
-
-            }
-
-            &__static button {
-                margin: 5px 15px;
-            }
-
-
-
-            &__title {
-                font-size: 16px;
-                line-height: 20px;
-                font-weight: bold;
-                letter-spacing: -0.045em;
-            }
-
-            &__title:nth-child(1) {
-                display: none;
-            }
-
-            &__title:nth-child(2) {
-                display: inline-block;
-                visibility: hidden;
-                position: relative;
-                margin-top: 5px;
-            }
-
-            &__title:nth-child(2)::after {
-                content: "Try another character";
-                visibility: visible;
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
-        }
-
-        .comics__grid {
-            grid-template-columns: 1fr;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            column-gap: 10px;
-        }
-
-        .comics__list {
-            margin-top: 0;
-        }
-
-        .comics__item {
-            padding: 0 10px;
-            justify-self: center;
-        }
-    }
-
-    .app__banner-text br {
-        display: block;
-    }
-
-    .app__banner-text span {
-        position: relative;
-    }
-
-    .app__banner img {
-        max-width: 100px;
-        width: 100%;
-        height: auto;
-        object-fit: contain;
     }
 }

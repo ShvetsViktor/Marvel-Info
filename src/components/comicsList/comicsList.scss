@@ -1,4 +1,4 @@
-@import '../../style/variables.scss';
+@use '@/style/variables.scss' as *;
 
 .comics {
     &__name {
@@ -30,11 +30,13 @@
         padding-top: 49px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        justify-content: space-around;
         gap: 30px;
     }
 
     &__item {
         width: 100%;
+        justify-self: center;
         transition: 0.3s transform;
         padding: 15px;
         cursor: pointer;
@@ -48,6 +50,68 @@
 
         &:hover {
             transform: translateY(-8px);
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .app {
+        .comics__grid {
+            grid-template-columns: repeat(3, auto);
+            gap: 0;
+            row-gap: 15px;
+        }
+
+        .comics__list {
+            margin-top: 0;
+        }
+
+        .comics__item {
+            padding: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .app {
+        .comics__grid {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+        }
+
+        .comics__item {
+            max-height: 700px;
+            width: auto;
+
+
+            a img {
+                object-fit: cover;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .app {
+
+        .comics__grid {
+            grid-template-columns: 1fr;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+        }
+
+        .comics__list {
+            margin-top: 0;
+        }
+
+        .comics__item {
+            padding: 0 10px;
+            justify-self: center;
         }
     }
 }

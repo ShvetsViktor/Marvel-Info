@@ -6,16 +6,15 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
 import Skeleton from '../skeleton/Skeleton';
 
-import './comicInfo.scss';
+import './singleComic.scss';
 import banner from '../../resources/img/banner.png'
 
-const ComicInfo = (props) => {
+const SingleComic = (props) => {
 
     const [comic, setComic] = useState(null);
 
 
     const { loading, error, getAComic, clearError } = useMarvelService();
-    // console.log(comics.id) //  не хватает сервиса
 
     useEffect(() => {
         updateComic();
@@ -63,10 +62,10 @@ const View = ({ comic }) => {
                 <p className="single-comic__descr">Language: {languages}</p>
                 <div className="single-comic__price">{price}$</div>
             </div>
-            <NavLink exact to="/comics"><a href="#" className="single-comic__back">Back to all</a></NavLink>
+            <Link to="/comics" className="single-comic__back">Back to all</Link>
         </>
     )
 }
 
 
-export default ComicInfo;
+export default SingleComic;

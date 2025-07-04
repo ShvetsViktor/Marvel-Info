@@ -1,0 +1,173 @@
+@use "/src/style/variables.scss" as *;
+
+.touch {
+    padding-top: 60px;
+
+    &__wrapper {
+        margin-top: 60px;
+        position: relative;
+    }
+
+    &__img {
+        display: none;
+    }
+
+    &__vase {
+        position: absolute;
+        display: none;
+    }
+
+    &__fieldset {
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__label {
+        display: block;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 200%;
+        color: $dark;
+
+        &:nth-child(2) {
+            margin-top: 8px;
+        }
+    }
+
+    &__input {
+        padding: 10px 15px;
+        width: 100%;
+        height: 48px;
+        color: $dark;
+        border-radius: 2px;
+        border: 1px solid #e2e1e5;
+        background: #fff;
+
+        &:focus {
+            border: none;
+            outline: 1px solid $dark;
+        }
+
+        &::placeholder {
+            color: $ui-disabled;
+            font-size: 14px;
+        }
+    }
+
+    &__textarea {
+        width: 100%;
+        height: 132px;
+        padding: 10px 15px;
+        color: $dark;
+        border-radius: 2px;
+        border: 1px solid #e2e1e5;
+        background: #fff;
+        resize: none;
+
+        &:focus {
+            border: none;
+            outline: 1px solid $dark;
+        }
+
+        &::placeholder {
+            color: $ui-disabled;
+            font-size: 14px;
+        }
+    }
+
+    &__check-block {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+
+        a {
+            margin-left: 2px;
+            color: #A22DC6;
+            text-decoration: none;
+        }
+    }
+
+    &__checkbox {
+        margin-right: 15px;
+        width: 15px;
+        height: 15px;
+    }
+
+    &__btn {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .touch {
+        &__wrapper {
+            margin-top: 45px;
+        }
+
+        &__form {
+            margin-left: 24px;
+            width: 300px;
+        }
+
+        &__vase {
+            display: inline-block;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .touch {
+        &__wrapper {
+            margin-top: 80px;
+            padding-left: 0;
+        }
+
+        &__img {
+            display: block;
+            width: 550px;
+            height: 341px;
+            object-fit: cover;
+            box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        &__input {
+            &:hover {
+                border: none;
+                outline: 1px solid $dark;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .touch {
+        padding-top: 100px;
+
+        &__img {
+            width: 100%;
+            height: 356px;
+        }
+
+        &__form {
+            width: auto;
+            box-sizing: border-box;
+            padding-left: 143px;
+        }
+
+
+        &__fieldset {
+            gap: 45px;
+        }
+
+        &__input-block {
+            width: 300px;
+        }
+
+        &__textarea {
+            width: 300px;
+        }
+    }
+}
