@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
+import placeholder from '../../assets/placeholder.png';
+
 import useMarvelService from '../../services/MarvelService';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
@@ -98,7 +100,7 @@ const CharList = (props) => {
                         alt={item.name}
                         onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = '/assets/placeholder.png';
+                            e.target.src = placeholder;
                         }}
                     />
                     <div className="char__name">{item.name}</div>
