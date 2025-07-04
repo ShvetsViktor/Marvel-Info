@@ -1,3 +1,4 @@
+import placeholder from '../../assets/placeholder.png';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -53,7 +54,14 @@ const View = ({ char }) => {
     return (
         <>
             <div className="char__basics">
-                <img src={thumbnail} alt={name} />
+                <img
+                    src={thumbnail}
+                    alt={name}
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = placeholder;
+                    }}
+                />
                 <div>
                     <div className="char__info-name">{name}</div>
                     <div className="char__btns">
