@@ -1,0 +1,1 @@
+import{j as r}from"./index-DVIZrL47.js";const s="/assets/error-BBH_usxQ.gif",o=()=>r.jsx("img",{style:{display:"block",width:"250px",height:"250px",objectFit:"contain",margin:"0 auto"},src:s,alt:"Error"});export{o as E};

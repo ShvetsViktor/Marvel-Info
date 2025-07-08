@@ -1,0 +1,1 @@
+import{r as t,j as s}from"./index-DVIZrL47.js";import{E as o}from"./ErrorMessage-OEIhc3ax.js";class p extends t.Component{state={error:!1};componentDidCatch(r,e){console.log(r,e),this.setState({error:!0})}render(){return this.state.error===!0?s.jsx(o,{}):this.props.children}}export{p as E};
