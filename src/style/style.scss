@@ -1,10 +1,7 @@
-@use '@/sass/libs/modern-normalize.min.css';
-@use "@/sass/libs/grids-min.css";
-@use "@/sass/libs/grids-responsive-min.css";
-@use "@/sass/libs/fontello.css";
-
 @use '@/style/variables.scss' as *;
 @use '@/style/button.scss';
+
+@import '@/style/modern-normalize.min.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
